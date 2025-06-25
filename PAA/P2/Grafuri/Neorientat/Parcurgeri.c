@@ -161,7 +161,8 @@ void cuprindere_bfs(int **graf,int start,int dest,int *coada,int n)
     }
     for(int i=k-1;i>=0;i--)
     {
-        printf("%d ",drum[i]);
+        printf("%d ",drum[i]);//practic e cel mai scurt drum cred 
+        
     }
     printf("\n");
 }
