@@ -1,0 +1,180 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+/*1. Se citesc doua numere naturale n si k. Generati si afisati toate toate numerele naturale formate din n cifre care contin exact k cifre de 1.*/
+/*
+int valid(int v[], int k) {
+    if (k == 0 && v[k] == 0) {
+        return 0; // Prima cifră nu poate fi zero.
+    }
+    return 1;
+}
+
+int solutie(int v[], int c, int k, int n) {
+    int unu = 0;
+    for (int i = 0; i < n; i++) {
+        if (v[i] == 1) {
+            unu++;
+        }
+    }
+    return (unu == c);
+}
+
+void afisare(int v[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%d", v[i]);
+    }
+    printf("\n");
+}
+
+void back(int v[], int k, int c, int n) {
+    if (k == n) {
+        if (solutie(v, c, k, n)) {
+            afisare(v, n);
+        }
+        return;
+    }
+
+    for (int i = 0; i <= 9; i++) {
+        v[k] = i;
+        if (valid(v, k)) {
+            back(v, k + 1, c, n);
+        }
+    }
+}
+
+int main() {
+    int n, c;
+    printf("Introduceti n si k: ");
+    scanf("%d %d", &n, &c);
+
+    if (c > n) {
+        printf("Nu este posibil să ai mai multe cifre de 1 decât numărul total de cifre.\n");
+        return -1;
+    }
+
+    int v[n];
+    back(v, 0, c, n);
+
+    return 0;
+}
+*/
+
+/*2.Se citeste un numar natural n. Afisati permutarile multimii 1,2,3...n in care pana la jumatate elementele sunt in ordine descrescatoare, iar de la jumatate pana la final in ordine crescatoare*/
+/*
+int valid (int k,int v[])
+{
+  int i;
+  for(i=0;i<k;i++)
+    if(v[i]==v[k])
+      return 0;
+  return 1;
+}
+int solutie(int k,int v[],int n)
+{
+  if(k!=n-1)
+    return 0;
+  int mij=n/2;
+  for(int i=0;i<mij;i++)
+    for(int j=i+1;j<=mij;j++)
+      if(v[i]>v[j])
+	return 0;
+  for(int i=mij;i<n;i++)
+    for(int j=i+1;j<n;j++)
+      if(v[i]<v[j])
+	return 0;
+  return 1;
+}
+void afis(int n,int v[])
+{
+  for(int i=0;i<n;i++)
+    {
+      printf("%d ",v[i]);
+    }
+  printf("\n");
+}
+void back(int k,int v[],int n)
+{
+  int i;
+  for(i=1;i<=n;i++)
+    {
+      v[k]=i;
+      if(valid(k,v))
+	{
+	  if(solutie(k,v,n))
+	    {
+	      afis(n,v);
+	    }
+	  else
+	    back(k+1,v,n);
+	}
+    }
+}
+  
+  
+
+int main()
+{
+  int n;
+  scanf("%d",&n);
+  int v[n];
+  back(0,v,n);
+
+  return 0;
+}
+*/
+
+/*3.Se dau urmatoarele 6 culori: alb, galben, rosu, verde, albastru si negru. Costruiti toate steagurile formate din 3 culori care indeplinesc urmatoarele conditii: - orice steag trebuie sa contina culoarea verde sau culoarea galben la mijloc. - culorile din fiecare steag trebuie sa fie distincte
+//alb-0, galben-1, rosu-2, verde-3, albastru-4, negru-5
+//sol[1]=3 || sol[1]=1, permutari de culori
+*/
+
+int valid(int v[],int k)
+{
+  for(int i=0;i<k;i++)
+    if(v[i]==v[k])
+      return 0;
+  return 1;
+}
+
+int solutie(int v[],int k)
+{
+  if(k!=2)
+    return 0;
+  if(v[1]==1 || v[1]==3)
+    return 1;
+  else
+    return 0;
+
+}
+void afisare(int v[])
+{
+  for(int i=0;i<3;i++)
+    printf("%d ",v[i]);
+  printf("\n");
+}
+void back(int v[],int k)
+{
+  int i;
+  for(i=0;i<6;i++)
+    {
+      v[k]=i;
+      if(valid(v,k))
+	{
+	  if(solutie(v,k))
+	    afisare(v);
+	  else
+	    back(v,k+1);
+	}
+    }
+}
+
+int main()
+{
+  int v[10];
+  back(v,0);
+  return 0;
+}
+ 
+
+      

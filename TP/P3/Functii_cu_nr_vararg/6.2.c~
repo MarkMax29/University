@@ -1,0 +1,31 @@
+/*Aplicația 6.2: Să se scrie o funcție float *allocVec(int n,...) care primește pe prima poziție un număr de elemente
+iar apoi n elemente reale. Funcția va aloca dinamic un vector de tip float în care va depune toate elementele.
+Exemplu: allocVec(3,7.2,-1,0) => {7.2, -1, 0}
+*/
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdarg.h>
+float *allocVec(int n,...)
+{
+  va_list va;
+  va_start(va,n);
+  float *v=NULL;
+  v=malloc(n*sizeof(float));
+  if(v==NULL)
+    {
+      perror(NULL);
+      exit(-1);
+    }
+  for(int i=0;i<n;i++)
+    {
+      v[i]=va_arg(va,float);
+    }
+  return v;
+}
+
+int main()
+{
+
+  return 0;
+}
+  

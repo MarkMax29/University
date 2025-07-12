@@ -1,0 +1,31 @@
+/*Subiectul 2: Să se realizeze o aplicaţie pentru gestionarea unei biblioteci folosind struct și union, iar dacă e
+posibil și structuri cu câmpuri pe biți.
+Se vor memora următoarele informaţii pentru fiecare înregistrare:
+ Titlu
+ Autor
+ Număr de exemplare
+ Preț (exprimat în lei, număr întreg, maxim 500 lei)
+ Număr de pagini (maxim 1000 pagini)
+ Greutate (exprimată în grame, maxim 5000 grame)
+ Dacă e Carte sau Revistă
+ Dacă e carte se va memora ISBN, sir de 13 caractere, exemplu: 9783161484100, iar dacă e revistă se va
+memora anul în care a apărut primul număr.
+Folosind un meniu să se realizeze următoarele operaţii:
+a) Introduceţi un produs.
+b) Afişaţi toate publicaţiile aflate în stoc care sunt cărţi si au preţul peste 100.
+c) Afişaţi toate înregistrările.
+d) Salvaţi toate publicatiile - Toate produsele se vor salva într-un fişier binar (inventar.bin) folosind structura
+creată anterior.
+Datele de intrare se vor citi de la tastatură
+*/
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+
+int main()
+{
+
+  return 0;
+}

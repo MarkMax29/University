@@ -1,0 +1,87 @@
+/*Aplicația 6.7: Să se scrie o funcție int comune(int nVec,...) care primește un număr de vectori cu valori de tip int și
+vectorii propriu-ziși. Fiecare vector se dă prin 2 argumente: un pointer la elementele sale și dimensiunea. Funcția
+va returna numărul de elemente comune care se regăsesc în toți vectorii.
+Exemplu: comune(3,v1,2,v2,3,v3,3) => returnează 2 pentru v1={5,8}, v2={8,3,5}, v3={5,0,8}
+*/
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdarg.h>
+int compar(const void *elem1,const void *elem2)
+{
+
+  const int *e1=(const int*)elem1;
+  const int *e2=(const int*)elem2;
+  if(*e1>*e2)
+    return -1;
+  else if(*e1<*e2)
+    return 1;
+  return 0;
+
+}
+int comune(int nVec,...)
+{
+  va_list va;
+  va_start(va,nVec);
+  int *tot=NULL;
+  int *vec_cur;
+  int size,size_tot=0,maxim=0;
+   vec_cur=va_arg(va,int*);
+  size=va_arg(va,int);
+  tot=malloc(size*sizeof(int));
+  if(tot==NULL)
+    {
+      perror(NULL);
+      exit(-1);
+    }
+  for(int i=0;i<size;i++)
+    {
+      tot[size_tot]=vec_cur[i];
+      size_tot++;
+      }
+  for(int i=0;i<nVec;i++)
+    {
+      vec_cur=va_arg(va,int*);
+      size=va_arg(va,int);
+      tot=realloc(tot,sizeof(int)*(size+size_tot));
+      if(tot==NULL)
+	{
+	  perror(NULL);
+	  exit(-1);
+	}
+      for(int j=0;j<size;j++)
+	{
+	  tot[size_tot]=vec_cur[j];
+	  if(maxim<tot[j])
+	    maxim=tot[j];
+	  size_tot++;
+	}
+    }
+
+  
+  qsort(tot,size_tot,sizeof(int),compar);//sortez vectorul u toate elementele
+
+  //partea cu vectorul de frecvennta
+  int frecv[maxim+1],count=0;
+  for(int i=0;i<=maxim;i++)
+    frecv[i]=0;
+  for(int i=0;i<size_tot;i++)
+    {
+      frecv[tot[i]]++;
+    }
+  for(int i=0;i<=maxim;i++)
+    {
+      if(frecv[i]==nVec)
+	count++;
+    }
+  va_end(va);
+  return count;
+  
+}
+int main()
+{
+  int v1[]={5,8},v2[]={8,3,5},v3[]={5,0,8},nr=0;
+  nr=comune(3,v1,2,v2,3,v3,3);
+  printf("Sunt %d elemente care se regasesc in toti vectorii\n",nr);
+  return 0;
+}

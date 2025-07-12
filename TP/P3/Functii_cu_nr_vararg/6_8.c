@@ -1,0 +1,45 @@
+/*Aplicația 6.8: Să se scrie o funcție sortare(int n,...) care pe prima poziție are numărul de elemente de sortat, iar
+pe următoarele poziții n adrese de valori de tip int. Funcția va sorta crescător valorile de la adresele date.
+Exemplu: sortare(3,&i,&j,&k); // sortează crescător valorile lui i, j și k
+*/
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdarg.h>
+void sortare(int n,...)
+{
+  va_list(va);
+  va_start(va,n);
+  int v[n];
+  for(int i=0;i<n;i++)
+    {
+      int *adr=va_arg(va,int*);
+      v[i]=*adr;
+    }
+  int aux=0;
+  for(int i=0;i<n-1;i++)
+    {
+      for(int j=i+1;j<n;j++)
+	{
+	  if(v[i]>v[j])
+	    {
+	      aux=v[i];
+	      v[i]=v[j];
+	      v[j]=aux;
+	    }
+	}
+    }
+  for(int i=0;i<n;i++)
+    {
+      printf("%d ",v[i]);
+    }
+  va_end(va);
+}
+
+int main()
+{
+  int i=9,j=2,k=6;
+  sortare(3,&i,&j,&k);
+  
+
+  return 0;
+}

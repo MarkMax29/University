@@ -1,0 +1,20 @@
+/*Aplicația 8.3: Se citește de la tastatură un număr n<=10 și un număr m<=20. Se cere să se scrie un program care
+generează o matrice cu m linii și n coloane în care sunt puse toate numerele de la 1,2,3,...,m*n. Se vor utiliza
+pointeri.*/
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+  int n,m,a[20][10];
+  printf("m=");scanf("%d",&m);
+  printf("n=");scanf("%d",&n);
+  int *p;
+  for(p=&a[0][0];p<&a[m][0];++p)
+    *p=0;
+  for(p=&a[0][0];p<&a[m][0];++p)
+    printf("%d ",*p);
+  
+  return 0;
+}

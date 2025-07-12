@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdarg.h>
+#include<math.h>
+#include<string.h>
+#define MAX 4
+int contor;
+int *p0(int n,...)
+{
+  va_list p;
+  va_start(p,n);
+  int *vect=NULL,aux=0,ok=1,i=0;
+  if((vect=malloc(n*sizeof(int)))==NULL)
+    { perror(NULL);
+      exit(-1);
+    }
+  for(int i=0;i<n;i++)
+    {ok=1;
+      aux=va_arg(p,int);
+      for(int j=0;j<i;j++)
+	{if(aux==vect[j])
+	    ok=0;
+	}
+      if(ok)
+	vect[contor++]=aux;
+    }
+  va_end(p);
+  return vect;
+}
+void p6_3(int n,...)
+{
+  va_list p;
+  va_start(p,n);
+  double *adresa=NULL;
+  for(int i=0;i<n;i++)
+    {
+      adresa=va_arg(p,double *);
+      *adr=fabs(*adresa);
+    }
+  va_end(p);
+}
+

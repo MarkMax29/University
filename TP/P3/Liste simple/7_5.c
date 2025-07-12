@@ -1,0 +1,93 @@
+/*Aplicația 7.5: Să se scrie o funcție care primește două liste și returnează 1 dacă ele sunt egale, indiferent de
+ordinea și numărul elementelor, altfel returnează 0.
+Exemple: listele {1, 7, 3, 1, 3} și {7, 1, 3, 7} sunt egale. Listele {1,2} și {2} nu sunt egale.
+*/
+
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct LIST{
+  int elem;
+  struct LIST *next;
+}LIST;
+LIST *creare_nod(LIST *next,int elem)
+{
+  LIST *aux=NULL;
+  aux=(LIST*)malloc(sizeof(LIST));
+  if(aux==NULL)
+    {
+      perror(NULL);
+      exit(-1);
+    }
+  aux->elem=elem;
+  aux->next=next;
+
+  return aux;
+}
+LIST *inserare_sfarsit(LIST *lista,int elem)
+{
+  LIST *p,*aux=creare_nod(NULL,elem);
+  if(lista==NULL)
+    lista=aux;
+  else
+    {
+      p=lista;
+      while(p->next!=NULL)
+	p=p->next;
+      p->next=aux;
+    }
+  return lista;
+     
+}
+
+void afis(LIST *lista)
+{
+  LIST *p=lista;
+  while(p!=NULL)
+    {
+      printf("%d ",p->elem);
+      p=p->next;
+    }
+}
+int egale(LIST *lista1,LIST *lista2)
+{
+  LIST *p=NULL,*q=NULL;
+  p=lista1;
+  int ok;
+  while(p!=NULL)
+    {
+     ok=1;
+     q=lista2;
+      while(q!=NULL && ok!=0)
+	{
+	  if(p->elem==q->elem)
+	    ok=0;
+	  q=q->next;
+	}
+      if(ok==1)
+	return 0;
+      p=p->next;
+    }
+  return 1;
+  
+}
+int main()
+{
+  LIST *lista1=NULL,*lista2=NULL;
+  int egal;
+  lista1=inserare_sfarsit(lista1,1);
+  lista1=inserare_sfarsit(lista1,7);
+  lista1=inserare_sfarsit(lista1,3);
+  lista1=inserare_sfarsit(lista1,1);
+  lista1=inserare_sfarsit(lista1,3);
+  lista2=inserare_sfarsit(lista2,7);
+  lista2=inserare_sfarsit(lista2,1); 
+  lista2=inserare_sfarsit(lista2,3);
+  lista2=inserare_sfarsit(lista2,7);
+  egal=egale(lista1,lista2);
+  if(egal==1)
+    printf("SUNT EGALE\n");
+  else
+    printf("NU SUNT EGALE\n");
+  return 0;
+}

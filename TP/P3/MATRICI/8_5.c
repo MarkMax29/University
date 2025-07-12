@@ -1,0 +1,45 @@
+/*Se citește de la tastatură o matrice cu n<=20 linii și coloane. Să se memoreze într-un vector suma
+tuturor elementelor de pe fiecare linie și într-un alt vector, suma tuturor elementelor de pe fiecare coloană. Să se
+afișeze cei doi vectori. Se vor utiliza pointeri atât pentru vectori cât și pentru matrici.*/
+#include<stdio.h>
+#include<stdlib.h>
+
+void prob()
+{
+  int n,k=0,l=0;
+  printf("n=");scanf("%d",&n);
+  int a[n][n],slin[n],scol[n];
+   for(int i = 0; i < n; i++)
+     {
+       slin[i] = 0;/// initializarea vectorilor e obligatoriu pentru a functiona 100 corect 
+       scol[i] = 0;
+     }
+   for(int i=0;i<n;i++)
+     for(int j=0;j<n;j++)
+       scanf("%d",&a[0][0]+i*n+j);
+   for(int i=0;i<n;i++)
+     {
+       for(int j=0;j<n;j++)
+	 {
+	   *(slin+k)=*(slin+k)+*(&a[0][0]+i*n+j);
+	   *(scol+l)=*(scol+l)+*(&a[0][0]+j*n+i);
+	 }
+       k++;
+       l++;
+    }
+   printf("Vectorul cu suma elem pe linie: ");
+   for(int i=0;i<k;i++)
+     printf("%d ",*(slin+i));
+   printf("\n");
+   printf("Vectorul cu suma elem pe coloane: ");
+   for(int i=0;i<l;i++)
+     printf("%d ",*(scol+i));
+   
+}
+
+int main()
+{
+  prob();
+  
+  return 0;
+}

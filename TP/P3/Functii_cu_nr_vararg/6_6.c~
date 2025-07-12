@@ -1,0 +1,48 @@
+/*Aplicația 6.6: Să se scrie o funcție char *concat(int n,...) care primește un număr de șiruri de caractere și apoi
+șirurile propriu-zise. Funcția va concatena într-un nou șir, alocat dinamic, conținuturile tuturor șirurilor date, cu câte
+un spațiu între ele și va returna acest șir.
+Exemplu: concat(3,”Ion”,”si”,”Ana”) => “Ion si Ana”
+*/
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdarg.h>
+#include<string.h>
+char *concat(int n,...)
+{
+  va_list va;
+  va_start(va,n);
+  char *sir=NULL;
+  s=va_arg(va,char);
+  sir=malloc(strlen(s)*sizeof(char)+2);
+  if(sir==NULL)
+    {
+      perror(NULL);
+      exit(-1);
+    }
+  strcpy(sir,s);
+  strcat(sir," ");
+  for(int i=1;i<n;i++)
+    {
+      char *s;
+      s=va_arg(va,char);
+      sir=realloc(sir,strlen(s)*sizeof(char)+2);
+      if(sir==NULL)
+	{
+	  perror(NULL);
+	  exit(-1);
+	}
+      strcat(sir,s);     
+
+    }
+
+
+}
+
+int main()
+{
+  
+
+  
+  return 0;
+}

@@ -1,0 +1,24 @@
+/*Aplicația 4.4: Folosind câmpuri pe biți, definiţi o structură pentru memorarea următoarelor informaţii despre
+animale:
+● numărul de picioare: număr întreg, minim 0 (ex. şarpe), maxim 1000 (ex. miriapod)
+● greutatea în kg: număr real
+● periculos pentru om: da/nu
+● abrevierea ştiinţifică a speciei: şir de maxim 8 caractere
+● vârsta maximă în ani: număr întreg, minim 0, maxim 2000
+Unde este posibil, codificaţi informaţiile prin numere întregi de dimensiune cât mai mică, spre exemplu “da”=1,
+“nu”=0. Definiţi structura în aşa fel încât să ocupe spaţiul minim de memorie posibil. Afişaţi spaţiul de memorie
+ocupat, folosind operatorul sizeof. Folosind structura definită, citiţi de la tastatură informaţii despre un animal, iar
+pe urmă afişaţi-le pe ecran.
+*/
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+typedef struct ANIMAL{
+  unsigned int picior:10;
+  unsigned int pericol:1;
+  unsigned int varsta:11;
+  float kg;
+  char abrev[9];
+}ANIMAL

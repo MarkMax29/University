@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct LIST{
+  char elem;
+  struct LIST *next;
+}LIST;
+
+LIST *creare_nod(LIST *next,char elem)
+{
+  LIST *aux=NULL;
+  aux=(LIST*)malloc(sizeof(LIST));
+  if(aux==NULL)
+    {
+      perror(NULL);
+      exit(-1);
+    }
+  aux->elem=elem;
+  aux->next=next;
+  return aux;
+}
+
+
+
+
+
+
+int main(int argc,char ** argv)
+{
+  
+  
+  return 0;
+}

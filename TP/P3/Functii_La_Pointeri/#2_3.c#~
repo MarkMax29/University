@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<stdlib.h>
+int compar(int *v,int size)
+{
+  v=malloc(sizeof(int)*size);
+  if(v==NULL)
+    {
+      perror(NULL);
+      exit(-1);
+    }
+  for(int i=0;i<n;i++)
+    {
+      if(compar(v[i])==1)
+	{
+	  break;
+	}
+
+
+
+
+
+       xxcnjnjkvnfuuhiuheiehfwifhevbhurbvurfbufvbudvhjvbdjfhvbfdskjjvhbdskjvbsjkdhbvjdsbvjkdsbvkjdsbvkdsbjfvjkbdsjkvfbdsjkvbdsjkfbvjksdbvkjsbdkvbdskskdjfhvbskdfjjhb433eeeeeeyreererereeeeeweeoiquwqproiwuerpwiowueewpqoereieueqpowiuepqwoiuqpwoiuepqwoiakjnincinclueincludeincluincludeincludeincluddeeeeeeeeeeuffhgfhhutgituhgksdjhfklsdjhfkjsdfhksaljhfksljhfkashfksjfhskafhsakkfhasfdhkjasncnnvmmbn j
+     
+    
+}
+
+int main()
+{
+
+  return 0;
+}
+
+	  

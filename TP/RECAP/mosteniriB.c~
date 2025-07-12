@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include<stdlib.h>
+union SPECIAL{
+  char tara[20];
+  int gen_haine;//0-barbati,1-femei,2-copii
+  int karate;
+  int cmsprod;///pretul celui mai scump produs;
+}CARACTERISTICI;
+  typedef struct MAGAZIN{
+    unsigned int tip_mag:3;
+    unsigned int nr_mag:13;
+    float metrii;
+    char nume_mag[25];
+    union SPECIAL CARACTERISTICI caracteristici;
+  }MAGAZIN;
+

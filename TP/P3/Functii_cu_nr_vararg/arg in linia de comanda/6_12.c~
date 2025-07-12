@@ -1,0 +1,47 @@
+/*Aplicația 6.12: Un program primește în linia de comandă o serie de opțiuni și de cuvinte, mixate între ele. Opțiunile
+specifică operații care se execută asupra cuvintelor. Opțiunile încep cu - (minus) și pot fi: u-transformă toate literele
+cuvintelor în majuscule; f-transformă prima literă în majusculă și următoarele în minuscule; r-inversează literele din
+cuvinte. După fiecare cuvânt se resetează toate opțiunile anterioare. Să se afișeze cuvintele primite în linia de
+comandă cu transformările aplicate.
+Exemplu: ./procesare -f mAria -r -u abac va afișa: Maria CABA
+*/
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<ctype.h>
+void maj(char *sir)
+{
+  for(int i=0;i<strlen(sir);i++)
+    {
+      sir[i]=toupper(sir[i]);
+    }
+}
+void prim_maj(char *sir)
+{
+  sir[0]=toupper(sir[0]);
+  for(int i=1;i<strlen(sir);i++)
+    {
+      sir[i]=tolower(sir[i]);
+    }
+	
+}
+void inversare(char *sir)
+{
+  char *cuv;
+  for(int j=0,i=strlen(sir)-1;i>=0;i--,j++)
+    {
+      cuv[j]=sir[i];
+    }
+  strcpy(sir,cuv);
+  
+
+}
+int main(int argc,char **argv)
+{
+
+
+  return 0;
+}
+
+	 

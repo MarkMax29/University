@@ -1,0 +1,41 @@
+/*Aplicația 8.4: Se citește de la tastatură o matrice pătratică cu n<=50 linii și coloane. Să se interschimbe elementele
+de deasupra diagonalei principale, considerată ca axă de simetrie, cu elementele de sub diagonala principală,
+elementele de pe diagonala principală rămânând la fel. De exemplu matricea:
+1 2 3
+4 5 6
+7 8 9
+Va deveni:
+1 4 7
+2 5 8
+3 6 9
+*/
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+  int n;
+  printf("n=");
+  scanf("%d",&n);
+  int a[50][50];
+  for(int i=0;i<n;i++)
+    for(int j=0;j<n;j++)
+      scanf("%d",&a[i][j]);
+  int aux=0;
+  for(int i=0;i<n;i++)
+    for(int j=0;j<n;j++)
+      if(i!=j)
+	{
+	  aux=a[i][j];
+	  a[i][j]=a[j][i];
+	  a[j][i]=aux;
+	}
+  for(int i=0;i<n;i++)
+    for(j=0;j<n;j++)
+      printf("%3d ",a[i][j]);
+  printf("\n");
+  
+  
+  return 0;
+}

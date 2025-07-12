@@ -1,0 +1,113 @@
+//ALOCARE DINAMICA MATRICE:
+
+int m,n,i,j;
+scanf("%d %d",&n,&m);
+
+int **a=NULL;
+a=(int**)malloc(m*sizeof(int*));
+if(a==NULL)
+  {
+    perror(NULL);
+    exit(-1);
+  }
+
+//alocare linii la matrice
+for(i=0;i<m;i++)
+  {
+    a[i]=(int*)malloc(n*sizeof(int));
+    if(a[i]==NULL)
+      {
+	for(i--;i>=0;i--)
+	  free(a[i]);
+	free(a);
+	perror(NULL);
+	exit(-1);
+      }
+  }
+
+for(i-0;i<m;i++)
+  {
+    free(a[i]);
+  }
+free(a);
+
+
+
+
+
+
+
+
+
+
+
+int m,n,i,j;
+
+a=(int**)malloc(m*sizeof(int*));
+if(a==NULL)
+  perror;
+exit(-1);
+
+
+for(i=0;i<m;i++)
+  {
+    a[i]=(int*)malloc(n*sizeof(int));
+    if(a[i]==NULL)
+      {
+	for(i--;i>=0;i--)
+	  {
+	    free(a[i]);
+	  }
+	free(a);
+	perror(NULL);
+	exit(-1);
+      }
+  }
+
+for(i=0;i<m;i++)
+  free(a[i]);
+free(a);
+
+
+
+
+//ADAUGARE LINIE NOUA
+//voi redimensiona vectorul de pointeri apoi alocam dinamic o linie suplimentara
+
+int **adaugare_lin(int **a,int m,int n)
+{
+
+  int **aux;
+  aux=(int**)realloc(a,(m+1)*sizoef(int*));
+  if(aux==NULL)
+    {
+      free(a,m,n)//functie de elib matrice
+	perror(null);
+      exit(-1);
+    }
+  a=aux;
+  a[m]=(int*)malloc(sizeof(int)*n);
+
+  if(a[m]==NULL)
+    {
+      free(a,m,n);
+      perror(NULL);
+      exit(-1);
+    }return a;
+  
+}
+
+
+void stergere_col(int **a,int m,int n)
+{
+  int *aux;
+  for(i=0;i<m;i++)
+    {
+      aux=(*aux)realloc(a[i],(n-1)*sizeof(int));
+      if(aux==NULL)
+	 free(a,m,N);
+      a[i]=aux;
+
+}
+
+

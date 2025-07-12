@@ -1,0 +1,23 @@
+/*Aplicația 4.5: Să se codifice următoarele informații despre un medicament, astfel încât ele să ocupe în total un
+singur octet. Să se scrie un program care să citească datele unui medicament și ulterior să le afișeze.
+● gradul de periculozitate: scăzută, medie, mare
+● dacă se eliberează doar pe bază de rețetă: da, nu
+● vârsta minimă de administrare: 1...18 ani inclusiv
+*/
+
+
+typedef struct MEDICAMENT{
+  unsigned int pericol:2;
+  unsigned int eliberare:1;
+  unsigned int varsta_min:5;
+}MEDICAMENT;
+
+int main()
+{
+  MEDICAMENT x;
+  printf("size:%d",sizeof(MEDICAMENT));
+	 
+
+  
+  return 0;
+}

@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<stdlib.h>
+//RAND A
+/*. Se citesc dintr-un fisier transmis ca si parametru in linie de comanda, un numar natural n (n<=100000) si apoi n
+numere intregi. Numerele se vor salva într-o listă simplu înlănțuită. Să se implementeze o funcție care primește ca
+parametru adresa primului element din listă și returnează o nouă listă care conține elemente sumele a câte două
+elemente consecutive din prima listă. Aplicați aceasă funcție în mai multe iterații până se ajunge la o listă cu un
+singur element. Dupa fiecare parcurgere se afiseaza numarul iteratiei si lista rezultată.
+Exemplu: n = 5 lista= (2 5 7 -3 9)
+Afiseaza:
+Iteratia 1: 7 12 4 6
+Iteratia 2: 19 16 10
+Iteratia 3: 35 26
+Iteratia 4: 61
+*/
+
+
+void pb1()
+{
+
+  FILE *f=NULL;
+  f=fopen("citire.txt","r");
+  if(f==NULL)
+    {
+      perror(NULL);
+      exit(-1);
+    }
+  int n;
+  fscanf(f,"%d",&n);
+
+}
+
+int main()
+{
+
+  return 0;
+}

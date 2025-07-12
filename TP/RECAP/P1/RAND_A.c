@@ -1,0 +1,132 @@
+#include<stdio.h>
+#include<stdlib.h>
+//RAND A
+/*. Se citesc dintr-un fisier transmis ca si parametru in linie de comanda, un numar natural n (n<=100000) si apoi n
+numere intregi. Numerele se vor salva într-o listă simplu înlănțuită. Să se implementeze o funcție care primește ca
+parametru adresa primului element din listă și returnează o nouă listă care conține elemente sumele a câte două
+elemente consecutive din prima listă. Aplicați aceasă funcție în mai multe iterații până se ajunge la o listă cu un
+singur element. Dupa fiecare parcurgere se afiseaza numarul iteratiei si lista rezultată.
+Exemplu: n = 5 lista= (2 5 7 -3 9)
+Afiseaza:
+Iteratia 1: 7 12 4 6
+Iteratia 2: 19 16 10
+Iteratia 3: 35 26
+Iteratia 4: 61
+*/
+typedef struct LIST{
+  int elem;
+  struct LIST *next;
+}LIST;
+
+LIST *creare_nod(LIST *next,int elem)
+{
+  LIST *aux=NULL;
+  aux=(LIST*)malloc(sizeof(LIST));
+  if(aux==NULL)
+    {
+      printf("eroare la alocare");
+      exit(-1);
+    }
+  aux->elem=elem;
+  aux->next=next;
+  return aux;
+}
+void afisare(LIST *lista)
+{
+  LIST *p=lista;
+  while(p!=NULL)
+    {
+      printf("%d ",p->elem);
+      p=p->next;
+    }
+}
+
+LIST *inserare_sfarsit(LIST *lista,int elem)
+{
+  LIST *p=NULL;
+  LIST *aux=creare_nod(NULL,elem);
+  if(lista==NULL)
+    lista=aux;
+  else
+    {
+      p=lista;
+      while(p->next!=NULL)
+	{
+	  p=p->next;
+	}
+      p->next=aux;
+    }
+  return lista;
+  
+}
+void free_list(LIST *lista)
+{
+  LIST *aux=NULL;
+  while(lista!=NULL)
+    {
+      aux=lista->next;
+      free(lista);
+      lista=aux;
+    }
+}
+void pb1A(LIST *lista)
+{
+  LIST *p=NULL,*lista1=NULL,*lista2=NULL;
+  int i=1;
+  lista1=lista;
+   while(lista1!=NULL && lista1->next!=NULL)
+     {
+      p=lista1;
+      lista2=NULL;
+      while(p!=NULL && p->next!=NULL)
+	{
+	  lista2=inserare_sfarsit(lista2,p->elem+p->next->elem);
+	  p=p->next;
+	}
+      printf("Iteratia %d:",i);
+      afisare(lista2);
+      printf("\n");
+      i++;
+      free_list(lista1);
+      lista1=lista2;
+    
+  }
+}
+int main(int argc,char **argv)
+{
+  if(argc!=2)
+    {
+      perror(NULL);
+      exit(-2);
+    }
+  char *nume_fisier=argv[1];
+  FILE *f=NULL;
+  LIST *lista=NULL;
+  f=fopen(nume_fisier,"r");
+  if(f==NULL)
+    {
+      perror(NULL);
+      exit(-1);
+    }
+  int n,nr;
+  if(fscanf(f,"%d",&n)!=1)
+    {
+      printf("eroare la citire");
+      exit(-3);
+    }
+  for(int i=0;i<n;i++)
+    {
+      if(fscanf(f,"%d",&nr)!=1)
+	{
+	  printf("eroare la citire");
+	  exit(-3);
+	}
+      //pun in lista
+      lista=inserare_sfarsit(lista,nr);
+    }
+ 
+  pb1(lista);
+  fclose(f);
+  free_list(lista);
+  return 0;
+}

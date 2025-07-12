@@ -1,0 +1,30 @@
+/*Aplicația 4.1: Să se codifice cu ajutorul structurilor cu câmpuri pe biți informațiile despre un fișier: nume (șir de
+maxim 15 caractere), dimensiunea acestuia (int - număr de octeți, maxim 1024 octeți), tipul acestuia (.txt - 0, .doc
+- 1, .xls – 2), tipul fisierului (normal – 0, read-only – 1). Să se citească informația despre un fișier, și să se afișeze
+pe ecran.
+*/
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct FISIER{
+
+  unsigned int dim:10;
+  unsigned int tip:2;
+  unsigned int tfis:1;
+  char nume[16];
+}FISIER;
+
+int main()
+{
+  FISIER x;
+  int dim,tip,tfis;
+  printf("Introdu date despre fisier: ");scanf("%s %d %d %d",x.nume,&dim,&tip,&tfis);
+  x.dim=dim;
+  x.tip=tip;
+  x.tfis=tfis;
+  printf("%s - %d - %d - %d\n",x.nume,x.dim,x.tip,x.tfis);
+  
+  return 0;
+}
+
+  

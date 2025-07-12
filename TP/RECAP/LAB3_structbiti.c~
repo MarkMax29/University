@@ -1,0 +1,89 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define MAX 4
+/*Aplicația 4.1: Să se codifice cu ajutorul structurilor cu câmpuri pe biți informațiile despre un fișier: nume (șir de
+maxim 15 caractere), dimensiunea acestuia (int - număr de octeți, maxim 1024 octeți), tipul acestuia (.txt - 0, .doc
+- 1, .xls – 2), tipul fisierului (normal – 0, read-only – 1). Să se citească informația despre un fișier, și să se afișeze
+pe ecran.
+
+Aplicația 4.2: Cu ajutorul structurii de la problema mai sus să se salveze într-un vector de structuri declarat static
+informații despre mai multe fișiere (maxim 10). Să se citească de la tastatură informațiile despre fișiere și să se
+salveze în fișierul memorie.txt.
+
+Aplicația 4.3: Modificați problema de mai sus astfel încât vectorul de structuri să fie alocat dinamic.
+
+*/
+
+typedef struct {
+  unsigned int dim:11; 
+  unsigned int tip_fis:2;
+  unsigned int tip:1;
+  char nume[16];
+}FISIER;
+void prob()
+{
+  int tip1,tip2,dimensiune,i=0,curent_size=0;
+  char nume[16];
+  FISIER *v=NULL;
+  while(scanf("%15s %d %d %d",nume,&tip1,&tip2,&dimensiune)==4)
+    {
+      
+      if(curent_size==i)
+	{
+	  curent_size=curent_size+MAX;
+	  
+	  v=(FISIER*)realloc(v,curent_size*sizeof(FISIER));
+	  if(v==NULL)
+	    {
+	      printf("eroare la alocare");
+	      exit(-1);
+	    }
+	 
+	}
+      strcpy(v[i].nume,nume);
+      v[i].tip_fis=tip1;
+      v[i].tip=tip2;
+      v[i].dim=dimensiune;
+      i++;
+    }
+  FILE *f=NULL;
+  f=fopen("memorie.txt","w");
+  if(f==NULL)
+    {
+      printf("nu s-a scris in fisier");
+      exit(-1);
+    }
+  for(int j=0;j<i;j++)
+    {
+      fprintf(f,"%s - %d -",v[j].nume,v[j].dim);//afisez nume si dimensiune
+      
+      if(v[j].tip_fis==0) // afisez tipul fisierului 0,1,2 txt/doc/xls
+	fprintf(f,".txt-");
+      else
+	if(v[j].tip_fis==1)
+	  fprintf(f,".doc-");
+	else
+	  fprintf(f,".xls-");
+
+      if(v[j].tip==0)  //afisez tipul 0,1 normal/read-only
+	fprintf(f,"normal\n");
+      else
+	fprintf(f,"read-only\n");
+      
+	 
+    }
+  fclose(f);
+  free(v);
+  
+ 
+}
+
+int main()
+{
+  prob();
+
+
+  return 0;
+}
+  

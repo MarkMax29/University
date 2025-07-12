@@ -1,0 +1,5 @@
+MaMa are MultE MERE 
+4 3 5 4 
+2 2 2 2 
+2 0 2 4 
+-20 -4 8 8 

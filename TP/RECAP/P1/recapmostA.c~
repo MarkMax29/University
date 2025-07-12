@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef union CARACT{
+
+  int tip_haine:2;
+  int karate:5;
+  int pretmic;
+  char tara[15];
+}CARACT;
+  
+
+typedef struct MAGAZIN{
+  int tip_mag:2;
+  int nr_mag:13;
+  char num[20];
+  float metrii;
+  CARACT caracteristici;
+}MAGAZIN;
+
+int main()
+{
+
+  return 0;
+}
+
+  

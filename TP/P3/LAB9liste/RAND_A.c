@@ -1,0 +1,104 @@
+/*. Se citesc dintr-un fisier transmis ca si parametru in linie de comanda, un numar natural n (n<=100000) si apoi n
+numere intregi. Numerele se vor salva într-o listă simplu înlănțuită. Să se implementeze o funcție care primește ca
+parametru adresa primului element din listă și returnează o nouă listă care conține elemente sumele a câte două
+elemente consecutive din prima listă. Aplicați aceasă funcție în mai multe iterații până se ajunge la o listă cu un
+singur element. Dupa fiecare parcurgere se afiseaza numarul iteratiei si lista rezultată.
+Exemplu: n = 5 lista= (2 5 7 -3 9)
+Afiseaza:
+Iteratia 1: 7 12 4 6
+Iteratia 2: 19 16 10
+Iteratia 3: 35 26
+Iteratia 4: 61
+*/
+
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct LIST{
+  int elem;
+  struct LIST *next;
+}LIST;
+
+LIST *creare_nod(LIST *next,int elem)
+{
+  LIST *aux=NULL;
+  aux=(LIST*)malloc(sizeof(LIST));
+  if(aux==NULL)
+    {
+      perror(NULL);
+      exit(-1);
+    }
+  aux->elem=elem;
+  aux->next=next;
+  return aux;
+}
+LIST *inserare_sfarsit(LIST *lista,int elem)
+{
+  LIST *p=NULL,*aux=creare_nod(NULL,elem);
+  if(lista==NULL)
+    lista=aux;
+  else
+    {
+      p=lista;;
+      while(p->next!=NULL)
+	p=p->next;
+      p->next=aux;
+    }
+  return lista;
+}
+
+void afis(LIST *lista)
+{
+  LIST *p=lista;
+  while(p!=NULL)
+    {
+      printf("%d ",p->elem);
+      p=p->next;;
+    }
+}
+
+LIST *suma(LIST *lista)
+{
+  LIST *p=lista,*list=NULL;
+  while(p->next!=NULL)
+    {
+      list=inserare_sfarsit(list,p->elem+p->next->elem);
+      p=p->next;
+    }
+  return list;
+}
+int main(int argc,char ** argv)
+{
+  if(argc!=2)
+    {
+      printf("eroare la argumente");
+      exit(-1);
+    }
+  FILE *f=NULL;
+  f=fopen(argv[1],"r");
+  if(f==NULL)
+    {
+      printf("eroare la eschiderea fisierului");
+      exit(-1);
+    }
+  LIST *lista=NULL;
+  int n,nr=0;
+  fscanf(f,"%d",&n);
+  for(int i=0;i<n;i++)
+    {
+      fscanf(f,"%d",&nr);
+      lista=inserare_sfarsit(lista,nr);
+    }
+ 
+  int iteratie=1;
+  while(lista->next!=NULL)
+    {
+      lista=suma(lista);
+      printf("ITERATIE %d: ",iteratie);
+      afis(lista);
+      printf("\n");
+      iteratie++;
+    }
+
+  return 0;
+}

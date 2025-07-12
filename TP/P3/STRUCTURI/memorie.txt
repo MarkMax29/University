@@ -1,0 +1,2 @@
+nume:Alex - dimesiune:525 - tip:2 - tip_fis:0
+nume:Iulia - dimesiune:675 - tip:3 - tip_fis:1

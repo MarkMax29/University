@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<ctype.h>
+int total(int arg,char ** sir)
+{
+  int nr_lit=0;
+  for(int i=2;i<arg;i++)
+    {
+      for(int j=0;j<strlen(sir[i]);j++)
+	{
+	  nr_lit++;
+	}
+    }
+  return nr_lit;
+}
+int main(int argc,char ** argv)
+{
+  int cod=atoi(argv[1]);
+  for(int i=2;i<argc;i++)
+    {
+      switch(cod)
+	{
+	case 0:
+	  {
+	    
+
+
+    }
+
+
+  return 0;
+}

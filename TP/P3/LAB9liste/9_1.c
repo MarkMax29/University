@@ -1,0 +1,112 @@
+/*Aplicația 9.1: Din fisierul date.in se citeste un numar natural k si apoi de pe a doua linie numere intregi. Contruiti
+o lista liniara simplu inlantuita care sa contina numerele intregi citite in ordinea din fisier.
+Permutati lista cu k pozitii spre stanga si afisati valorile din lista.
+Indicatie: se vor scrie si folosi functii pentru adaugarea unei valori la sfarsitul listei si pentru stergerea primului nod
+al listei si vor fi folosite pentru permuarea ceruta.
+Exemplu:
+date.in
+3
+1 2 3 4
+date.out
+4 1 2 3
+*/
+
+
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct LIST{
+  int elem;
+  struct LIST *next;
+}LIST;
+
+LIST *creare_nod(LIST *next,int elem)
+{
+  LIST *aux=NULL;
+  aux=(LIST*)malloc(sizeof(LIST));
+  if(aux==NULL)
+    {
+      perror(NULL);
+      exit(-1);
+    }
+  aux->elem=elem;
+  aux->next=next;
+  return aux;
+}
+LIST *inserare_sfarsit(LIST *lista,int elem)
+{
+  LIST *aux=creare_nod(NULL,elem);
+  if(lista==NULL)
+    lista=aux;
+  else
+    {
+      LIST *p=lista;
+      while(p->next!=NULL)
+	p=p->next;
+      p->next=aux;
+    }
+  return lista;
+
+}
+
+LIST *stergere_inceput(LIST *lista)
+{
+  if(lista==NULL)
+    return lista;
+  LIST *p=lista;
+  lista=lista->next;
+  free(p);
+  return lista;
+  
+}
+void afis(LIST *lista)
+{
+  LIST *p=lista;
+  FILE *out;
+  out=fopen("date.out","w");
+  if(out==NULL)
+    {
+      perror(NULL);
+      exit(-1);
+    }
+  while(p!=NULL)
+    {
+      fprintf(out,"%d ",p->elem);
+      p=p->next;
+    }
+  fclose(out);
+}
+void permut()
+{
+  FILE *in=NULL;
+  int k,nr,aux;
+  LIST *lista=NULL;
+  in=fopen("date.in","r");
+  if(in==NULL)
+    {
+      perror(NULL);
+      exit(-1);
+    }
+  fscanf(in,"%d",&k);
+  while(fscanf(in,"%d",&nr)==1)
+    {
+      lista=inserare_sfarsit(lista,nr);
+    }
+  for(int i=0;i<k;i++)
+    {
+      aux=lista->elem;
+      lista=stergere_inceput(lista);
+     lista=inserare_sfarsit(lista,aux);
+      
+    }
+  afis(lista);
+  
+
+}
+int main()
+{
+  permut();
+
+
+  return 0;
+}

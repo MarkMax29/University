@@ -1,0 +1,14 @@
+/*Aplicația 6.4: Să se scrie o funcție crescator(int n,char tip,...) care primește un număr n de valori și returnează 1
+dacă ele sunt în ordine strict crescătoare, altfel 0. Caracterul tip indică tipul valorilor și poate fi ‘d’ - int, ‘f’ - double.
+Exemplu: printf(“%d”,crescator(3,’d’,-1,7,9))*/
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdarg.h>
+
+
+int main()
+{
+
+  return 0;
+}

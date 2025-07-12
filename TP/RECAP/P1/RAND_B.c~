@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<stdlib.h>
+/*Sa se implementeze o functie în C care primeste un numar natural n, construieste si afiseaza o listă dublu
+înlănțuită formată din primele 2𝑛 numere naturale, dispuse astfel:
+• se pleacă de la lista 1 2
+• exact la mijlocul acestei liste se inserează elementele 3 4 și se obține 1 3 4 2
+• exact la mijlocul acestei liste se inserează elementele 5 6 7 8 și se obține 1 3 5 6 7 8 4 2
+• etc.
+• în general, la mijlocul șirului format din primele 2𝑘 numere naturale se inserează șirul ordonat format din
+următoarele 2𝑘 numere naturale.
+Se va implemente o functie main() adecvata si orice alte functii necesare. Să se afișeze toate listele intermediare obținute.
+*/
+
+typedef struct LIST{
+  int elem;
+  struct LIST *next,*prev;
+}LIST;
+
+LIST *creare_nod(LIST *next,LIST *prev,int elem)
+{
+  LIST *aux=NULL;
+  aux=(LIST*)malloc(sizeof(LIST));
+  if(aux==NULL)
+    {
+      printf("eroare la alocare");
+      exit(-1);
+    }
+  aux->elem=elem;
+  aux->next=next;
+  aux->prev=prev;
+  return aux;
+}
+void afisare(LIST *lista)
+{
+  LIST *p=lista;
+  while(p!=NULL)
+    {
+      printf("%d ",p->elem);
+      p=p->next;
+    }
+}
+  

@@ -1,0 +1,13 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX 100
+typedef struct
+{
+  char text[MAX];
+  int rand;
+}TEXT;
+
+int main()
+{
+  return 0;
+}

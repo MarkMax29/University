@@ -1,0 +1,55 @@
+/*Aplicația 5.3: Se citesc m și n de la tastatură, iar apoi o matrice a[m][n] cu elemente de tip întreg. Să se scrie matricea într-un fișier text, prima oară scriindu-se m și n, iar apoi elementele, așa cum sunt dispuse ele în memorie. Să se citească matricea din fișier într-o variabilă b și să se afișeze.*/
+#include<stdio.h>
+#include<stdlib.h>
+void pb5_3()
+{
+  FILE *f=NULL;
+  f=fopen("matrice.txt","r");
+  if(f==NULL)
+    {
+      perror(NULL);
+      exit(-1);
+    }
+  int m,n;
+  printf("m=");
+  fscanf("%d",&m);
+  printf("n=");
+  fscanf("%d",&n);
+  int a[m][n];
+  for(int i=0;i<m;i++)
+    for(int j=0;j<n;j++)
+      fscanf("%d",&a[i][j]);
+
+  FILE *g=NULL;
+  g=fopen("scriere.bin","wb");
+  if(g==NULL)
+    {
+      perror(NULL);
+      exit(-1);
+    }
+  char buffer[1];
+  buffer[0]=32;//pentru a pune spatiu in fisier binar
+  fwrite(&m,sizeof(int),1,g);
+  fwrite(buffer,sizeof(buffer),1,g);
+  fwrite(&n,sizeof(int),1,g);
+  buffer[0]=10;//pentru a pune new line in fisier binar
+  fwrite(buffer,sizeof(buffer),1,g);
+
+  buffer[0]=32;
+  for(int i=0;i<m;i++)
+    {for(int j=0;j<n;j++)
+	{ fwrite(&a[i][j],sizeof(int),1,g);
+	  fwrite(buffer,sizeof(buffer),1,g);
+	 }
+      buffer[0]=10;
+      fwrite(buffer,sizeof(buffer),1,g);
+    }
+  fclose(g);
+  fclose(f);
+    
+
+}
+int main()
+{
+  return 0;
+}

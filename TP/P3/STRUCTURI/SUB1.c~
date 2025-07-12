@@ -1,0 +1,16 @@
+/*Să se imlementeze un program care gestionează un parc de automobile. Informaţiile relative la un
+automobil sunt: codul mașinii (număr între 1 si 9000), numărul de locuri (între 1 și 9), puterea (în cai putere între 1
+și 500), marca, culoarea, anul fabricaţiei maşinii (între 1800 și 2017). Parcul conține n automobile, datele sunt citite
+de la tastatură. Să se scrie următoarele funcții de gestiune a mașinilor:
+a) Introducerea unui automobil nou;
+b) Ștergerea unui anumit automobil, al cărui cod e citit de la tastatură;
+c) Afișarea întregii liste de automobile;
+d) Afișarea pe ecran doar a automobilelor cu un anumit număr de locuri, citit de la tastatură;
+e) Ordonarea listei în funcție de anul fabricației, folosind qsort.
+Să se definească structura pentru o mașină cu ajutorul structurilor cu câmpuri pe biți astfel încât spațiul ocupat să
+fie minim.
+*/
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
