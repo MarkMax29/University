@@ -1,0 +1,32 @@
+module sisr4b(
+  input clk,rst_b,i,
+  output [3:0]q
+  );
+  
+  generate 
+    genvar k;
+    for(k=0;k<4;k=k+1) begin:vect
+      if(k==0)
+        d_ff inst1(.clk(clk),.rst_b(1'd1),.set_b(rst_b),.d(q[3]^i),.q(q[k]));
+      else if(k==1)
+        d_ff inst2(.clk(clk),.rst_b(1'd1),.set_b(rst_b),.d(q[3]^q[0]),.q(q[k]));
+      else
+        d_ff inst3(.clk(clk),.rst_b(1'd1),.set_b(rst_b),.d(q[k-1]),.q(q[k]));
+      end
+    endgenerate 
+  endmodule
+module sisr4b_tb;
+  reg clk,rst_b,i;
+  wire [3:0]q;
+  
+  sisr4b instanta(.clk(clk),.rst_b(rst_b),.i(i),.q(q));
+  
+  initial begin
+    clk=0;
+    repeat (35) clk=~clk;
+  end
+  initial begin
+    rst_b=0;
+    #25 rst=1;
+  end
+endmodule

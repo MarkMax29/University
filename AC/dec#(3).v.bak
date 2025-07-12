@@ -1,0 +1,14 @@
+module dec #(
+  parameter w=3;
+  )
+  ( 
+    input [w-1:0]s,
+    input e;
+    output [2**w-1:0]o
+    );
+  always @(*)
+    if(e==0)
+      o=0;
+    else
+      o[s]=1;
+endmodule

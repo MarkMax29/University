@@ -1,0 +1,59 @@
+module regfl #(
+  parameter k=8
+  )(
+    input clk,rst_b,we,
+    input [2:0]s,
+    input [k**2-1:0]d,
+    output [k*64-1:0]q
+    );
+    
+  wire [k-1:0]lds;
+  dec #(.w(3)) inst1(.e(we),.s(s),.o(lds));
+  generate 
+    genvar i;
+      for(i=0;i<k;i=i+1)begin:vect
+        rgst #(.w(64)) inst_reg(.clk(clk),.rst_b(rst_b),.clr(1'b0),.ld(lds[i]),.d(d),.q(q[511-i*64:448-i*64]));
+        end
+      endgenerate
+    endmodule
+module regfl_tb;
+  reg clk,rst_b,we;
+  reg [2:0]s;
+  reg [63:0]d;
+  wire [511:0]q;
+  
+  regfl instanta(.clk(clk),.rst_b(rst_b),.we(we),.s(s),.d(d),.q(q));
+  
+  initial begin
+    clk=0;
+    repeat (13) #100 clk=~clk;
+  end    
+  initial begin
+    rst_b=0;
+    #25;
+      rst_b=~rst_b;
+  end
+  initial begin
+    we=1;
+    #600;
+    we=0;
+    #100;
+    we=1;
+  end
+  task urand64(output reg [63:0]r);
+    begin
+      r[63:32]=$urandom;
+      r[31:0]=$urandom;
+    end
+  endtask
+  
+  initial begin
+    s=$urandom;
+    repeat(13) #100 s=$urandom;
+  end
+  initial begin
+    urand64(d);
+    repeat(13) #100 urand64(d);
+  end
+endmodule
+      

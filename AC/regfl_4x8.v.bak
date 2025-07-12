@@ -1,0 +1,55 @@
+module regfl_4x8(
+  input clk,rst_b,wr_e,//rst asincron
+  input [1:0]wr_addr,rd_addr,
+  input [7:0]wr_data,
+  output [7:0]rd_data
+  );
+ 
+  wire [3:0]out,o;
+  dec1_4 inst1(.s(wr_addr),.e(wr_e),.o(o));
+  reg_8 r1(.clk(clk),.rst_b(rst_b),.ld(o[0]),.d(wr_data),.q(out[0]));
+  reg_8 r2(.clk(clk),.rst_b(rst_b),.ld(o[1]),.d(wr_data),.q(out[1]));
+  reg_8 r3(.clk(clk),.rst_b(rst_b),.ld(o[2]),.d(wr_data),.q(out[2]));
+  reg_8 r4(.clk(clk),.rst_b(rst_b),.ld(o[3]),.d(wr_data),.q(out[3]));
+  mux2s #(.w(4)) insmux(.s(rd_addr),.d(out),.o(rd_data));
+endmodule
+
+module regfl4x8_tb;
+  reg clk,rst_b;
+  reg [1:0]wr_addr,rd_addr;
+  reg [7:0]wr_data;
+  reg wr_e;
+  wire [7:0]rd_data;
+
+  regfl_4x8 instanta(.clk(clk),.rst_b(rst_b),.wr_e(wr_e),.wr_addr(wr_addr),.rd_addr(rd_addr),.wr_data(wr_data),.rd_data(rd_data));
+  
+  initial begin
+    clk=0;
+    repeat (18) #50 clk=~clk;
+  end
+  initial begin
+    rst_b=0;
+    #5 rst_b=~rst_b;
+  end
+  initial begin
+    #0 wr_addr=2'h0; wr_data=8'ha2; rd_addr=2'h3;
+    #100 wr_addr=2'h2; wr_data=8'h2e; rd_addr=2'h0;
+    #100 wr_addr=2'h1; wr_data=8'h98; rd_addr=2'h1;
+    #100 wr_addr=2'h3; wr_data=8'h55; rd_addr=2'h2;
+    #100 wr_addr=2'h0; wr_data=8'h20; rd_addr=2'h0;
+    #100 wr_addr=2'h1; wr_data=8'hff; rd_addr=2'h3;
+    #100 wr_addr=2'h3; wr_data=8'hc7; rd_addr=2'h1;
+    #100 wr_addr=2'h2; wr_data=8'hb5; rd_addr=2'h2;
+    #100 wr_addr=2'h3; wr_data=8'h91; rd_addr=2'h3;
+  end
+  initial begin
+    wr_e=1;
+    #200 wr_e=0;
+    #100 wr_e=1;
+    #400 wr_e=0;
+    #100 wr_e=1;
+  end
+  initial begin
+  $monitor("Time: %0t, wr_data: %h, rd_data: %h", $time, wr_data, rd_data);
+end
+endmodule

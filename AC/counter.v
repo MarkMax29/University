@@ -1,0 +1,48 @@
+module counter #(
+  parameter w=8,
+  parameter iv=8'hff
+  )
+  (
+    input clk,rst_b,c_up,clr,
+    output reg [w-1:0]q
+    );
+  
+  always @(posedge clk,negedge rst_b) begin
+    
+    if(!rst_b)  q<=iv; 
+    else if(clr)  q<=iv;
+    else if(c_up) q<=q+1;
+  
+  end         
+endmodule
+
+module counter_tb;
+  reg clk,rst_b,c_up,clr;
+  wire [7:0]q; 
+  
+  counter #(.w(8),.iv(8'hff)) inst(.clk(clk),.rst_b,.c_up(c_up),.clr(clr),.q(q));
+  
+  initial begin
+    clk=0;
+    repeat (7) #100 clk =~clk;
+  end
+  
+  initial begin
+    rst_b=0;
+    #5 rst_b=~rst_b;
+  end
+  
+  initial begin
+    c_up=1;
+    #400 c_up=0;
+    #100 c_up=1;
+
+  end
+  initial begin
+    clr=0;
+    #200 clr=1;
+    #100 clr=0;
+    
+  end
+endmodule
+  

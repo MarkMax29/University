@@ -1,0 +1,33 @@
+module lss5b(
+  input clk,rst_b,
+  output [4:0]q
+  );
+  generate 
+    genvar k;
+      for(k=0;k<5;k=k+1)begin:vect
+        if(k==0)
+          d_ff inst1(.clk(clk),.rst_b(1'd1),.set_b(rst_b),.d(q[4]),.q(q[k]));
+      else if(k==3)
+          d_ff inst2(.clk(clk),.rst_b(1'd1),.set_b(rst_b),.d(q[4]|q[2]),.q(q[k]));
+      else if(k==4) 
+          d_ff inst3(.clk(clk),.rst_b(1'd1),.set_b(rst_b),.d(q[4]~^q[3]),.q(q[k]));
+      else     
+          d_ff inst(.clk(clk),.rst_b(1'd1),.set_b(rst_b),.d(q[k-1]),.q(q[k]));
+        end
+      endgenerate
+    endmodule
+module lss5b_tb;
+  reg clk,rst_b;
+  wire [4:0]q;
+  
+  lss5b instanta(.clk(clk),.rst_b(rst_b),.q(q));
+  
+  initial begin
+    clk=0;
+    repeat(35) #100 clk=~clk;
+  end
+  initial begin
+    rst_b=0;
+    #25 rst_b=~rst_b;
+  end
+endmodule

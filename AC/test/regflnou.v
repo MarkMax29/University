@@ -1,0 +1,65 @@
+module regfl #(parameter w=8)
+  (
+     input [w-1:0]wr_data,
+     input [1:0]wr_addr,rd_addr,
+     input wr_e,
+     input clk,rst_b,
+     output [w-1:0]rd_data
+     );
+     
+     wire [7:0] out[3:0];
+     wire [3:0] lds;
+     dec instdec(.s(wr_addr),.e(wr_e),.o(lds));
+     regs #(.w(8)) inst1(.clk(clk),.rst_b(rst_b),.clr(1'd0),.ld(lds[0]),.d(wr_data),.q(out[0]));
+     regs #(.w(8)) inst2(.clk(clk),.rst_b(rst_b),.clr(1'd0),.ld(lds[1]),.d(wr_data),.q(out[1]));
+     regs #(.w(8)) inst3(.clk(clk),.rst_b(rst_b),.clr(1'd0),.ld(lds[2]),.d(wr_data),.q(out[2]));
+     regs #(.w(8)) inst4(.clk(clk),.rst_b(rst_b),.clr(1'd0),.ld(lds[3]),.d(wr_data),.q(out[3]));
+     mux instmux(.s(rd_addr),.d0(out[0]),.d1(out[1]),.d2(out[2]),.d3(out[3]),.o(rd_data));
+   endmodule
+   module regfl_tb;
+     reg [7:0]wr_data;
+     reg[1:0] wr_addr,rd_addr;
+     reg wr_e,clk,rst_b;
+     wire [7:0]rd_data;
+     
+     regfl inst(.clk(clk),.rst_b(rst_b),.wr_data(wr_data),.wr_addr(wr_addr),.rd_addr(rd_addr),.wr_e(wr_e),.rd_data(rd_data));
+     
+     initial begin
+       clk=0;
+       repeat (9*2) #50 clk=~clk;
+     end
+     initial begin
+       rst_b=0;
+       #5 rst_b=~rst_b;
+     end
+     initial begin
+       wr_e=1;
+       #200 wr_e=0;
+       #100 wr_e=1;
+       #400 wr_e=0;
+       #100 wr_e=1;
+     end
+     task urand2(output reg [2:0]r);
+       begin
+         r[1:0]=$urandom;
+       end
+     endtask
+     task urand8(output reg [7:0]r);
+       begin 
+         r[7:4]=$urandom;
+         r[3:0]=$urandom;
+       end
+     endtask
+     integer k;
+     initial begin
+       urand2(wr_addr);
+       urand2(rd_addr);
+       urand8(wr_data);
+       for(k=1;k<9;k=k+1) begin
+        #100; 
+           urand2(wr_addr);
+           urand2(rd_addr);
+           urand8(wr_data);
+         end
+       end
+     endmodule 

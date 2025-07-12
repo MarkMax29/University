@@ -1,0 +1,24 @@
+module fac(
+  input x,y,ci,
+  output z,co
+  );
+  assign {co,z}=x+y+ci;
+endmodule
+
+module fac_tb;
+  reg x,y,ci;
+  wire z,co;
+  
+  fac inst(.x(x),.y(y),.ci(ci),.z(z),.co(co));
+  
+  integer k;
+  initial begin
+    
+    $display("Time\tx\ty\tci\tz\tco");
+    $monitor("%0t\t%b\t%b\t%b\t%b\t%b",$time,x,y,ci,z,co);
+    for(k=0;k<8;k=k+1)
+      {x,y,ci}=k;
+      #10;
+    end
+endmodule
+      

@@ -1,0 +1,89 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\model-simulator\modelsim\win32aloem\AC
+vdec1_4
+!s100 K]MZ^CcP]:zQGJVCJz98l2
+IKh`C482g?D1^A7^B7FAKX1
+VTOnjSEJoKd0K<7mfi<kEN1
+w1733589567
+8dec1_4.v
+Fdec1_4.v
+L0 1
+Z1 OV;L;6.5b;42
+r1
+!s85 0
+31
+!s101 -O0
+o-O0
+vmux2_1
+!s100 Q4O>bW[ecPW?e_^94O8n>3
+I<N2H3^g`M0znWh_Z9G03=3
+VITma@5kn_U9[m2[O]IhSd2
+Z2 w1733589324
+Z3 8mux2s.v
+Z4 Fmux2s.v
+L0 1
+R1
+r1
+!s85 0
+31
+!s101 -O0
+o-O0
+vmux2s
+!s100 QMj2LgM[n;1AdbXYXa0Fa1
+IU^S_N??SNKDN?<RF4U=j23
+V7==<BD1YPfhLU<JViG]=82
+R2
+R3
+R4
+L0 13
+R1
+r1
+!s85 0
+31
+!s101 -O0
+o-O0
+vreg_8
+!s100 Sei6YR2aX6J=N^HF=E@^Z3
+ID40XE0Mf9913Yd<i5F1XB1
+VK3W1@Xf3E4RLI1I5V<UVA0
+w1733589562
+8reg_8.v
+Freg_8.v
+L0 1
+R1
+r1
+!s85 0
+31
+!s101 -O0
+o-O0
+vregfl4x8_tb
+!s100 nX]8>N0LZkk7UC37aEV;<0
+IWaQR48`O=^h<CgH?Rc0<f2
+VYE4O]oj0YhIY^gl2F5RC52
+Z5 w1733787466
+Z6 8regfl_4x8.v
+Z7 Fregfl_4x8.v
+L0 17
+R1
+r1
+!s85 0
+31
+!s101 -O0
+o-O0
+vregfl_4x8
+!s100 ?XVFTQRjcgi0;ART33gCi1
+IN5i7fToUT]c52Fnk1^e[j3
+VcHz5]b`fHn`F3V1fRK62P2
+R5
+R6
+R7
+L0 1
+R1
+r1
+!s85 0
+31
+!s101 -O0
+o-O0
