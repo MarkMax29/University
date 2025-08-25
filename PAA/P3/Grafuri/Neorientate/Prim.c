@@ -3,13 +3,16 @@
 #include <string.h>
 #define MAX 100
 #define MIN 999999999
-int graf[MAX+1][MAX+1];
+int graf[MAX][MAX];
 
 
 void Prim(int n,int start)
 {
-    int u[MAX+1];
-    memset(u,0,sizeof(int)*(MAX+1));
+    int u[MAX];
+    for(int i=1;i<=n;i++)
+    {
+        u[i]=0;
+    }
 
     u[start]=1;
     int suma=0;
@@ -22,7 +25,7 @@ void Prim(int n,int start)
         {
             for(int j=1;j<=n;j++)
             {
-                if(graf[i][j]!=0 && u[i]==1 && u[j]==0 && graf[i][j]<min)
+                if(graf[i][j]!=0 && u[i]!=u[j] && graf[i][j]<min)
                 {
                     mini=i;
                     minj=j;
@@ -35,6 +38,7 @@ void Prim(int n,int start)
             suma=suma+min;
             printf("%d -> %d (cost=%d)\n",mini,minj,min);
             u[minj]=1;
+            u[mini]=1;
         }
     }
 
@@ -57,8 +61,7 @@ int main(int argc,char **argv)
     memset(graf,0,sizeof(graf));
 
     int n;
-    char sir[20];
-    fscanf(f,"%s",sir);
+    
     fscanf(f,"%d",&n);
     
     for(int i=1;i<=n;i++)
