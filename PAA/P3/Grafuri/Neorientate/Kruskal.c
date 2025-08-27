@@ -32,14 +32,14 @@ void kruskal(int n)
 		}
         if(mini!=-1 && minj!=-1)
         {
-            int set_mini = S[mini];
-            int set_minj = S[minj]; 
+            int set_mini = S[mini];///componenta veche 
+            int set_minj = S[minj]; ///componenta noua 
             
             for(int i=1; i<=n ; i++)
             {
-                if(S[i]==set_mini)
+                if(S[i]==set_mini)//toate care fac parte din componenta veche
                 {
-                    S[i]=set_minj;
+                    S[i]=set_minj;//vor face parte din componenta noua 
                 }
             }
             cost+=graf[mini][minj];
