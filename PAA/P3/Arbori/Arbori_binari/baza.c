@@ -8,7 +8,7 @@ typedef struct Nod{
 }Nod;
 
 //asta e strict pentru a crea un nod 
-Nod *creare(int valoare)
+Nod *creare(char valoare)
 {
     Nod *nod=(Nod*)malloc(sizeof(Nod));
     if(nod==NULL)
@@ -38,7 +38,7 @@ Nod *queue(Nod **coada)
 {
     return coada[front++];
 }
-
+///inserarea asta e buna si pentru construirea unui arbore binar de inaltime minima adica unul complet in care toate nivelurile sunt pline in afara de ultimu nivel unde poate fi partial plin dar in sub arb stang sa fie completat sau sa inceapa completarea de la stanga 
 void inserare(Nod **rad,int val)
 {
     if(*rad==NULL)
@@ -117,7 +117,7 @@ void preorder(Nod *rad)
 {
     if(rad==NULL)
         return;
-    printf("%d ",rad->key);
+    printf("%c ",rad->key);
     preorder(rad->st);
     preorder(rad->dr);
 }
@@ -227,9 +227,31 @@ int inaltime(Nod *nod)
     return 1+max(hst,hdr);//se uita practic in ambii subarbori si verifica care e mai inalt si +1 ca sa adaugam si radacina practic 
 }
 
+
+Nod *genereaza(FILE *f)
+{
+    char c;
+    if(fscanf(f," %c", &c)!=1)
+    {
+        return NULL;
+    }
+    
+
+    if(c=='.')
+    {
+        return NULL;
+    }
+
+    Nod *rad=creare(c);
+    rad->st=genereaza(f);
+    rad->dr=genereaza(f);
+    
+    return rad;
+}
+
 int main()
 {
-    Nod *radacina=NULL;//acesta practic e arborele nostru,un pointer catre radacina 
+   // Nod *radacina=NULL;//acesta practic e arborele nostru,un pointer catre radacina 
 
     FILE *f=fopen("in.txt","r");
     if(f==NULL)
@@ -238,6 +260,10 @@ int main()
         exit(-1);
     }
 
+    Nod *rad=genereaza(f);
+
+    preorder(rad);
+/*
     int nr;
     while(fscanf(f,"%d",&nr)==1)
     {
@@ -274,5 +300,7 @@ int main()
     height=0;
     height=inaltime(radacina);
     printf("\nInaltime dupa stergere: %d\n",height);
+
+    */
     return 0;
 }
