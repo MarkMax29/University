@@ -1,0 +1,2 @@
+apple, banana, computer, keyboard, mouse, monitor
+computr
