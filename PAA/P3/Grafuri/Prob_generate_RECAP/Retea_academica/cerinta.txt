@@ -1,0 +1,10 @@
+Mai multe universități de renume din Europa au creat o rețea informatică pentru partajarea resurselor educaționale și a bazelor de date științifice. Între universități există legături de comunicație de diferite viteze, ceea ce face ca timpul de transfer al unui fișier mare să varieze.
+
+Un grup de specialiști IT a fost însărcinat să analizeze această rețea și să răspundă la două cerințe:
+
+1)Pentru orice pereche de universități, să determine timpul minim necesar pentru a transmite un fișier, presupunând că fișierul poate fi trimis și prin universități intermediare (nu doar pe legături directe).
+
+2)Rectorii au ales două universități reprezentative – Universitatea din Paris (notată nodul 1) și Universitatea din Berlin (notată nodul 7). 
+Ei vor să știe nu doar timpul minim de transfer între aceste două instituții, ci și traseul exact (prin ce universități intermediare trebuie să treacă fișierul pentru a ajunge cel mai rapid).
+
+3)(opțional, pentru dificultate suplimentară) Specialiștii trebuie să raporteze și care sunt cele două universități aflate la cea mai mare distanță minimă între ele (adică diametrul rețelei).

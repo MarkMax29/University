@@ -1,0 +1,6 @@
+Într-o perioadă de criză sanitară, o companie de distribuție trebuie să trimită medicamente din depozitul principal al țării spre mai multe spitale regionale. 
+Fiecare drum între orașe are propriile taxe de drum, costuri de combustibil și chiar riscuri de securitate. 
+Conducerea companiei cere șoferilor să ajungă la destinație cât mai sigur și cu costuri cât mai mici, pentru că bugetul este foarte limitat.
+
+Un șofer primește sarcina să plece din depozit și să ajungă într-un spital anume. 
+El are la dispoziție harta tuturor drumurilor și costurilor asociate fiecăruia, dar trebuie să aleagă traseul astfel încât cheltuiala totală să fie minimă.

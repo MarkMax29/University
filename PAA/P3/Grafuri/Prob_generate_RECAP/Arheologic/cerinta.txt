@@ -1,0 +1,7 @@
+Un grup de arheologi explorează o regiune întinsă deșertică unde se află mai multe situri antice. 
+Între unele situri există poteci șerpuite prin nisip, între altele nu. Potecile nu sunt marcate oficial, ci au fost bătătorite în timp de caravanele locale. 
+Echipa trebuie să stabilească planul de cercetare: vor să știe în câte locuri din regiune pot să se miște liber fără a avea nevoie de cămile suplimentare pentru a fi transportați în altă zonă.
+
+De exemplu, dacă pornesc dintr-un sit, pot merge pe poteci spre alte câteva situri. 
+Dar există și situri complet separate, la care nu se poate ajunge deloc din primele. 
+Șeful expediției vrea o estimare a câtor „zone izolate de explorare” există în total.
