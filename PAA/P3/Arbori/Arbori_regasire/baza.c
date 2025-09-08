@@ -45,6 +45,7 @@ void inserare(Nod **rad,const char *cuv)
     }
     curent->sf_cuv=1;
 }
+
 void afiseaza(Nod *rad,char *buffer,int nivel)
 {
     if(rad==NULL)
